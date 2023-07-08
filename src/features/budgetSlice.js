@@ -1,17 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialState = [
-  {
-    name: 'January 2023',
-    plannedAmt: '20000',
-    actualAmt: '15000',
-  },
-  {
-    name: 'February 2023',
-    plannedAmt: '20000',
-    actualAmt: '25000',
-  },
-];
+const initialState = [];
 
 export const budgetSlice = createSlice({
   name: 'budget',

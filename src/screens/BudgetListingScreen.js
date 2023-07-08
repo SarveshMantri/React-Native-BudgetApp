@@ -33,10 +33,10 @@ const BudgetListingScreen = () => {
               <Divider bold={true} style={{backgroundColor: 'white'}} />
               <Card.Content style={{marginVertical: 5}}>
                 <Text variant="titleLarge">
-                  Planned Amount : {item.plannedAmt}
+                  Planned Amount : {item.plannedAmt} RS
                 </Text>
                 <Text variant="titleLarge">
-                  Actual Amount : {item.actualAmt}
+                  Actual Amount : {item.actualAmt} RS
                 </Text>
               </Card.Content>
             </Card>
