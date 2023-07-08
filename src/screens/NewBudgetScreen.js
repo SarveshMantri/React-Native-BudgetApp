@@ -1,12 +1,30 @@
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import React, {useState} from 'react';
 import {Button, TextInput} from 'react-native-paper';
 import styles from '../styles';
 
-const NewBudgetScreen = () => {
+const NewBudgetScreen = ({setOnBudgets}) => {
   const [name, setName] = useState('');
   const [plannedAmt, setPlannedAmt] = useState('');
   const [actualAmt, setActualAmt] = useState('');
+
+  const handleAddBudget = () => {
+    if (name.trim().length === 0) {
+      Alert.alert('Warning!', 'Please enter a valid name.');
+      return;
+    }
+
+    if (isNaN(Number(plannedAmt)) || Number(plannedAmt) <= 0) {
+      Alert.alert('Warning!', 'Please enter a valid planned amount.');
+      return;
+    }
+
+    if (isNaN(Number(actualAmt)) || Number(actualAmt) <= 0) {
+      Alert.alert('Warning!', 'Please enter a valid actual amount.');
+      return;
+    }
+    setOnBudgets(true);
+  };
 
   return (
     <View style={styles.container}>
@@ -14,9 +32,8 @@ const NewBudgetScreen = () => {
         mode="outlined"
         label="Name"
         style={styles.textInput}
+        onChangeText={name => setName(name)}
         value={name}
-        onChange={name => setName(name)}
-        autofocus={true}
       />
       <TextInput
         mode="outlined"
@@ -26,8 +43,7 @@ const NewBudgetScreen = () => {
         keyboardType="numeric"
         selectTextOnFocus={true}
         value={plannedAmt}
-        onChange={plannedAmt => setPlannedAmt(plannedAmt)}
-        autofocus={true}
+        onChangeText={plannedAmt => setPlannedAmt(plannedAmt)}
       />
       <TextInput
         mode="outlined"
@@ -37,13 +53,9 @@ const NewBudgetScreen = () => {
         keyboardType="numeric"
         selectTextOnFocus={true}
         value={actualAmt}
-        onChange={actualAmt => setActualAmt(actualAmt)}
-        autofocus={true}
+        onChangeText={actualAmt => setActualAmt(actualAmt)}
       />
-      <Button
-        mode="contained"
-        onPress={() => console.log('Pressed')}
-        style={styles.button}>
+      <Button mode="contained" onPress={handleAddBudget} style={styles.button}>
         Add Budget
       </Button>
     </View>

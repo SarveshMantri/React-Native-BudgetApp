@@ -12,7 +12,11 @@ const App = () => {
     <SafeAreaView>
       <ScrollView>
         <NavigatorHeader setOnBudgets={setOnBudgets} />
-        {onBudgets ? <BudgetListingScreen /> : <NewBudgetScreen />}
+        {onBudgets ? (
+          <BudgetListingScreen />
+        ) : (
+          <NewBudgetScreen setOnBudgets={setOnBudgets} />
+        )}
       </ScrollView>
     </SafeAreaView>
   );
