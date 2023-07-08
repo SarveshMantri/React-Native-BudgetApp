@@ -2,8 +2,12 @@ import {Alert, View} from 'react-native';
 import React, {useState} from 'react';
 import {Button, TextInput} from 'react-native-paper';
 import styles from '../styles';
+import {useDispatch} from 'react-redux';
+import {addBudget} from '../features/budgetSlice';
 
 const NewBudgetScreen = ({setOnBudgets}) => {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [plannedAmt, setPlannedAmt] = useState('');
   const [actualAmt, setActualAmt] = useState('');
@@ -23,7 +27,9 @@ const NewBudgetScreen = ({setOnBudgets}) => {
       Alert.alert('Warning!', 'Please enter a valid actual amount.');
       return;
     }
+    dispatch(addBudget({name, plannedAmt, actualAmt}));
     setOnBudgets(true);
+    Alert.alert('Success!', 'Budget addedd successfully');
   };
 
   return (
